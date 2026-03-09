@@ -74,3 +74,28 @@ LOGIN:
 
 REGISTER:
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/7f0f84b8-a329-4333-9801-30e0a1f76740" />
+
+
+
+SS AN PRAKTIKUM 3:
+ERD:
+<img width="920" height="408" alt="Untitled" src="https://github.com/user-attachments/assets/91bd062a-b09e-44ff-8c99-34a06abf0507" />
+
+MODELS:
+kategori:
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/6bec493a-dc61-42c3-a2cc-f7c4a430328d" />
+
+produk:
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/bb41398b-01c7-4fcd-8891-6b89a09de8d0" />
+
+
+MIGRATION:
+kategori:
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/12bc5bbe-51d6-4b7a-920e-95f901cd434b" />
+
+produk:
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/abdfce72-4010-409c-9a70-e8aedd4cf024" />
+
+
+DATABASE:
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/693570da-d443-4148-86ec-adf035b8e766" />
