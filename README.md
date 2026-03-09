@@ -78,10 +78,12 @@ REGISTER:
 
 
 SS AN PRAKTIKUM 3:
+
 ERD:
-<img width="920" height="408" alt="Untitled" src="https://github.com/user-attachments/assets/91bd062a-b09e-44ff-8c99-34a06abf0507" />
+<img width="1061" height="408" alt="image" src="https://github.com/user-attachments/assets/7f28fc77-2742-43c1-b17d-136f81d75922" />
 
 MODELS:
+
 kategori:
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/6bec493a-dc61-42c3-a2cc-f7c4a430328d" />
 
@@ -90,6 +92,7 @@ produk:
 
 
 MIGRATION:
+
 kategori:
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/12bc5bbe-51d6-4b7a-920e-95f901cd434b" />
 
@@ -98,4 +101,5 @@ produk:
 
 
 DATABASE:
+
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/693570da-d443-4148-86ec-adf035b8e766" />
