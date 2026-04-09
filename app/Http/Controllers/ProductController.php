@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -69,9 +70,11 @@ class ProductController extends Controller
     public function delete($id)
     {
         $product = Product::findOrFail($id);
+        
+        // Cek izin via Policy
+        Gate::authorize('delete', $product);
 
         $product->delete();
-
-        return redirect()->route('product.index')->with('success', 'Product berhasil dihapus');
+        return redirect()->route('product.index')->with('success', 'Berhasil dihapus');
     }
 }
