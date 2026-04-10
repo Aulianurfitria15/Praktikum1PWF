@@ -12,21 +12,19 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard') }}
-                </x-nav-link>
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
 
-                {{-- Hanya Admin yang bisa lihat menu Product --}}
-                @can('manage-product')
+                    {{-- Sekarang semua user bisa lihat link ini --}}
                     <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.*')">
                         {{ __('Product') }}
                     </x-nav-link>
-                @endcan
 
-                <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
-                    {{ __('About') }}
-                </x-nav-link>
-            </div>
+                    <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
+                        {{ __('About') }}
+                    </x-nav-link>
+                </div>
                 
             </div>
 

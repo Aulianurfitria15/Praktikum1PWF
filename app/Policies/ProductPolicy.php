@@ -37,16 +37,14 @@ class ProductPolicy
      */
     public function update(User $user, Product $product): bool
     {
-        // User cuma bisa update punya sendiri, Admin bebas
-        return $user->id === $product->user_id || $user->role === 'admin';
+        // Admin bisa edit barang apa saja (milik siapa pun)
+        return $user->role === 'admin';
     }
-
     public function delete(User $user, Product $product): bool
     {
-        // Logika sama untuk hapus
-        return $user->id === $product->user_id || $user->role === 'admin';
+        // Admin bisa hapus barang apa saja
+        return $user->role === 'admin';
     }
-
     /**
      * Determine whether the user can restore the model.
      */
