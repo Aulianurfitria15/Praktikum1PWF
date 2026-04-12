@@ -40,11 +40,11 @@
                             <input type="text" id="name" name="name"
                                    value="{{ old('name', $product->name) }}" placeholder="e.g. Wireless Headphones"
                                    class="w-full px-4 py-2.5 rounded-lg border text-sm
-                                   {{ $errors->has('name') ? 'border-red-500 bg-red-50' : 'border-gray-300 bg-white' }}
+                                   {{ $errors->has('name') ? 'border-red-600 bg-red-50' : 'border-gray-300 bg-white' }}
                                    text-gray-900 placeholder-gray-400
-                                   focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                                   focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-600 transition">
                             @error('name')
-                                <p class="mt-1.5 text-xs text-red-500">{{ $message }}</p>
+                                <p class="mt-1.5 text-xs font-semibold text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
 
@@ -57,11 +57,11 @@
                                 <input type="number" id="quantity" name="quantity"
                                        value="{{ old('quantity', $product->quantity) }}" placeholder="0" min="0"
                                        class="w-full px-4 py-2.5 rounded-lg border text-sm
-                                       {{ $errors->has('quantity') ? 'border-red-500 bg-red-50' : 'border-gray-300 bg-white' }}
+                                       {{ $errors->has('quantity') ? 'border-red-600 bg-red-50' : 'border-gray-300 bg-white' }}
                                        text-gray-900 placeholder-gray-400
-                                       focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                                       focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-600 transition">
                                 @error('quantity')
-                                    <p class="mt-1.5 text-xs text-red-500">{{ $message }}</p>
+                                    <p class="mt-1.5 text-xs font-semibold text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
 
@@ -73,11 +73,11 @@
                                        value="{{ old('price', $product->price) }}" placeholder="0" min="0"
                                        step="0.01"
                                        class="w-full px-4 py-2.5 rounded-lg border text-sm
-                                       {{ $errors->has('price') ? 'border-red-500 bg-red-50' : 'border-gray-300 bg-white' }}
+                                       {{ $errors->has('price') ? 'border-red-600 bg-red-50' : 'border-gray-300 bg-white' }}
                                        text-gray-900 placeholder-gray-400
-                                       focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                                       focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-600 transition">
                                 @error('price')
-                                    <p class="mt-1.5 text-xs text-red-500">{{ $message }}</p>
+                                    <p class="mt-1.5 text-xs font-semibold text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
@@ -89,9 +89,9 @@
                             </label>
                             <select id="user_id" name="user_id"
                                     class="w-full px-4 py-2.5 rounded-lg border text-sm
-                                    {{ $errors->has('user_id') ? 'border-red-500 bg-red-50' : 'border-gray-300 bg-white' }}
+                                    {{ $errors->has('user_id') ? 'border-red-600 bg-red-50' : 'border-gray-300 bg-white' }}
                                     text-gray-900
-                                    focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                                    focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-600 transition">
                                 <option value="">-- Select Owner --</option>
                                 @foreach ($users as $user)
                                     <option value="{{ $user->id }}"
@@ -101,7 +101,7 @@
                                 @endforeach
                             </select>
                             @error('user_id')
-                                <p class="mt-1.5 text-xs text-red-500">{{ $message }}</p>
+                                <p class="mt-1.5 text-xs font-semibold text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
 

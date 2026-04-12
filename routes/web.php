@@ -20,18 +20,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/about', [App\Http\Controllers\AboutController::class, 'about'])->name('about');
 });
 
-// 1. SEMUA User (Admin & User biasa) bisa akses halaman daftar
-Route::middleware(['auth'])->group(function () {
-    Route::get('/product', [ProductController::class, 'index'])->name('product.index');
-    Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
-});
-
-// 2. HANYA Admin yang bisa CRUD (Create, Store, Edit, Update, Delete)
+// 1. Rute Khusus Admin (Taruh CREATE di paling atas)
 Route::middleware(['auth', 'can:manage-product'])->group(function () {
     Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
     Route::post('/product', [ProductController::class, 'store'])->name('product.store');
     Route::get('/product/edit/{product}', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+});
+
+// 2. Rute Umum (Taruh {id} di bawah agar tidak bentrok)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+    Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 });
 require __DIR__.'/auth.php';

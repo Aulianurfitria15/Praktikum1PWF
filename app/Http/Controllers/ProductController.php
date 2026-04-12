@@ -6,6 +6,11 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\QueryException;
+use App\Http\Requests\UpdateProductRequest; // Import UpdateProductRequest
+use App\Http\Requests\StoreProductRequest; // Import StoreProductRequest
 
 class ProductController extends Controller
 {
@@ -16,18 +21,37 @@ class ProductController extends Controller
         return view('product.index', compact('products'));
     }
 
-    public function store(Request $request)
+    public function store(StoreProductRequest $request) // Ganti Request jadi StoreProductRequest
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'quantity' => 'required|integer',
-            'price' => 'required|numeric',
-            'user_id' => 'required|exists:users,id',
-        ]);
+        // Validasi otomatis berjalan di sini. 
+        // Jika gagal, Laravel langsung balik ke halaman sebelumnya dengan error.
+        $validated = $request->validated();
+        $validated['user_id'] = $request->user_id; // Mengambil user_id dari dropdown form
 
-        $product = Product::create($validated);
+        try {
+            Product::create($validated);
+            return redirect()->route('product.index')->with('success', 'Produk berhasil ditambah.');
+        } catch (\Exception $e) {
+            return back()->withInput()->with('error', 'Gagal menyimpan data.');
+        }
+    }
 
-        return redirect()->route('product.index')->with('success', 'Product created successfully.');
+    public function update(UpdateProductRequest $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        // Validasi otomatis dari UpdateProductRequest
+        $validated = $request->validated();
+
+        try {
+            $product->update($validated);
+
+            return redirect()->route('product.index')
+                ->with('success', 'Produk berhasil diupdate.');
+        } catch (\Exception $e) {
+            return back()->withInput()
+                ->with('error', 'Gagal mengupdate data.');
+        }
     }
 
     public function create()
@@ -44,21 +68,6 @@ class ProductController extends Controller
         return view('product.view', compact('product'));
     }
 
-    public function update(Request $request, $id)
-    {
-        $product = Product::findOrFail($id);
-
-        $validated = $request->validate([
-            'name' => 'sometimes|string|max:255',
-            'quantity' => 'sometimes|integer',
-            'price' => 'sometimes|numeric',
-            'user_id' => 'sometimes|exists:users,id',
-        ]);
-
-        $product->update($validated);
-
-        return redirect()->route('product.index')->with('success', 'Product updated successfully.');
-    }
 
     public function edit(Product $product)
     {
