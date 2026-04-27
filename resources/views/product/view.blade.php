@@ -5,18 +5,35 @@
                 <div class="p-8 text-gray-900">
 
                     {{-- Header --}}
-                    <div class="flex items-center gap-3 mb-8">
-                        <a href="{{ route('product.index') }}"
-                           class="p-2 rounded-full text-indigo-600 hover:text-white hover:bg-indigo-500 transition border border-indigo-100 shadow-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                 stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M15 19l-7-7 7-7" />
-                            </svg>
-                        </a>
-                        <div>
-                            <h2 class="text-2xl font-bold text-indigo-700 tracking-tight">Product Detail</h2>
-                            <p class="text-sm text-gray-500 mt-0.5">ID: <span class="font-semibold text-indigo-600">#{{ $product->id }}</span></p>
+                    <div class="flex items-center justify-between gap-3 mb-8">
+                        <div class="flex items-center gap-3">
+                            <a href="{{ route('product.index') }}"
+                               class="p-2 rounded-full text-indigo-600 hover:text-white hover:bg-indigo-500 transition border border-indigo-100 shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </a>
+                            <div>
+                                <h2 class="text-2xl font-bold text-indigo-700 tracking-tight">Product Detail</h2>
+                                <p class="text-sm text-gray-500 mt-0.5">ID: <span class="font-semibold text-indigo-600">#{{ $product->id }}</span></p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            @can('update', $product)
+                                @php $editUrl = route('product.edit', $product->id); @endphp
+                            @else
+                                @php $editUrl = null; @endphp
+                            @endcan
+                            @can('delete', $product)
+                                @php $deleteUrl = route('product.delete', $product->id); @endphp
+                            @else
+                                @php $deleteUrl = null; @endphp
+                            @endcan
+                            @if($editUrl || $deleteUrl)
+                                <x-edit-delete-buttons :edit-url="$editUrl" :delete-url="$deleteUrl" />
+                            @endif
                         </div>
                     </div>
 
