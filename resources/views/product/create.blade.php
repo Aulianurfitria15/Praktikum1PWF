@@ -95,6 +95,29 @@
                             @enderror
                         </div>
 
+                        {{-- Category --}}
+                        <div>
+                                <label for="category_id" 
+                                   class="block text-sm font-medium text-black mb-1">
+                                Kategori <span class="text-red-500">*</span>
+                                </label>
+                                <select id="category_id" name="category_id" 
+                                    class="w-full px-4 py-2.5 rounded-lg border text-sm 
+                                    {{ $errors->has('category_id') ? 'border-red-500 bg-red-50' : 'border-gray-300 bg-white' }} 
+                                    text-black focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                                <option value="">-- Pilih Kategori --</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" 
+                                            {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <p class="mt-1.5 text-xs text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
                         {{-- Actions --}}
                         <div class="flex items-center justify-end gap-3 pt-2">
                             {{-- Tombol Cancel: Dipertegas menjadi abu-abu gelap --}}

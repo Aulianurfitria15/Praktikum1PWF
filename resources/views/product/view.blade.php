@@ -80,6 +80,27 @@
                             </div>
                         </div>
 
+                        {{-- Category --}}
+                        <div class="flex items-start px-6 py-4 gap-4">
+                            <div class="w-36 shrink-0 text-xs font-semibold text-gray-500 uppercase tracking-wide pt-1">Category</div>
+                            <div>
+                                @if($product->kategori)
+                                    <div class="flex items-center gap-2">
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
+                                            {{ $product->kategori->name }}
+                                        </span>
+                                        <a href="{{ route('category.show', $product->kategori) }}" class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+                                            View category
+                                        </a>
+                                    </div>
+                                @else
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-600">
+                                        Uncategorized
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         {{-- Created At --}}
                         <div class="flex items-start px-6 py-4 gap-4">
                             <div class="w-36 shrink-0 text-xs font-semibold text-gray-500 uppercase tracking-wide pt-1">Created At</div>

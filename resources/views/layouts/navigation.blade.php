@@ -21,6 +21,13 @@
                         {{ __('Product') }}
                     </x-nav-link>
 
+                    {{-- Category link hanya untuk admin --}}
+                    @can('manage-product')
+                    <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.*')">
+                        {{ __('Category') }}
+                    </x-nav-link>
+                    @endcan
+
                     <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
                         {{ __('About') }}
                     </x-nav-link>

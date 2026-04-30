@@ -9,15 +9,17 @@ class Product extends Model
 {
     protected $fillable = [
         'user_id',
+        'category_id',
         'name',
         'quantity',
         'price',
     ];
 
-    public function kategori()
+    public function kategori(): BelongsTo
     {
-        return $this->hasMany(Kategori::class);
+        return $this->belongsTo(Kategori::class, 'category_id');
     }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

@@ -3,16 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Kategori extends Model
 {
     protected $fillable = [
-        'product_id',
-        'nama',
+        'name',
     ];
 
-    public function product()
+    public function products(): HasMany
     {
-        return $this->belongsTo(Product::class);
+        return $this->hasMany(Product::class, 'category_id');
     }
 }

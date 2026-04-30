@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +21,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/about', [App\Http\Controllers\AboutController::class, 'about'])->name('about');
 });
 
-// 1. Rute Khusus Admin (Taruh CREATE di paling atas)
+// 1. Rute Khusus Admin untuk Category dan Product (Taruh CREATE di paling atas)
 Route::middleware(['auth', 'can:manage-product'])->group(function () {
+    // Category Routes
+    Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/category/{kategori}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::put('/category/{kategori}', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/category/{kategori}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+    // Product Routes
     Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
     Route::post('/product', [ProductController::class, 'store'])->name('product.store');
     Route::get('/product/edit/{product}', [ProductController::class, 'edit'])->name('product.edit');
@@ -29,8 +39,12 @@ Route::middleware(['auth', 'can:manage-product'])->group(function () {
     Route::delete('/product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
 });
 
-// 2. Rute Umum (Taruh {id} di bawah agar tidak bentrok)
+// 2. Rute Umum untuk View (Taruh {id} di bawah agar tidak bentrok)
 Route::middleware(['auth'])->group(function () {
+    // Category Routes - View Only
+    Route::get('/category/{kategori}', [CategoryController::class, 'show'])->name('category.show');
+    
+    // Product Routes - View Only
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 });

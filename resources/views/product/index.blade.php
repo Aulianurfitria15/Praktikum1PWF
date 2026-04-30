@@ -12,7 +12,7 @@
                             </h2>
                             <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Manage your product inventory</p>
                         </div>
-                        @can('manage-products')
+                        @can('manage-product')
                             <x-add-product :url="route('product.create')" :name="'Product'"/>
                         @endcan
                     </div>
@@ -31,6 +31,7 @@
                                 <tr>
                                     <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">#</th>
                                     <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Product</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Category</th>
                                     <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Quantity</th>
                                     <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Price</th>
                                     <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Owner</th>
@@ -42,6 +43,17 @@
                                     <tr class="hover:bg-gray-50 transition duration-150">
                                         <td class="px-6 py-4 text-sm text-gray-600">{{ $loop->iteration }}</td>
                                         <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ $product->name }}</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">
+                                            @if($product->kategori)
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                                                    {{ $product->kategori->name }}
+                                                </span>
+                                            @else
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
+                                                    Uncategorized
+                                                </span>
+                                            @endif
+                                        </td>
                                         <td class="px-6 py-4">
                                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ $product->quantity > 10 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
                                                 {{ $product->quantity }}
@@ -85,7 +97,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="px-6 py-12 text-center text-gray-500">No products found.</td>
+                                        <td colspan="7" class="px-6 py-12 text-center text-gray-500">No products found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
